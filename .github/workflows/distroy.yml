@@ -6,7 +6,7 @@ on:
 jobs:
   terraform-Destroy-dev:
     runs-on: ubuntu-latest
-    environment: des
+    environment: destroy
     permissions:
       id-token: write
       contents: read
@@ -41,7 +41,7 @@ jobs:
   terraform-Destroy-stg:
     needs: terraform-Destroy-dev
     runs-on: ubuntu-latest
-    environment: des
+    environment: destroy
     permissions:
       id-token: write
       contents: read
@@ -75,7 +75,7 @@ jobs:
   terraform-Destroy-prod:
     needs: terraform-Destroy-stg
     runs-on: ubuntu-latest
-    environment: des
+    environment: destroy
     permissions:
       id-token: write
       contents: read
