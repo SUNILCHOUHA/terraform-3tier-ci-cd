@@ -2,14 +2,17 @@ name: 3-Tier-Terraform-CI
 on: 
   pull_request:
 jobs:
+
   Pre-Test:
     strategy:
       matrix:
         environment: [dev, stg, prod]
     runs-on: ubuntu-latest
+
     permissions:
       id-token: write
       contents: read
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,11 +26,9 @@ jobs:
           role-to-assume: arn:aws:iam::954976311612:role/CI-CD_Terraform
           aws-region: us-east-1
 
-
       - name: Terraform init
         working-directory: terraform
         run: terraform init -lock-timeout=300s
-
 
       - name: Terraform create & select workspace
         working-directory: terraform
